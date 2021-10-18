@@ -30,7 +30,7 @@ form.addEventListener("submit", (e) => {
 function addMovie(movieTitle) {
   fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "applcation/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       title: movieTitle,
       body: movieTitle,
@@ -43,14 +43,21 @@ function addMovie(movieTitle) {
 function renderMovieItem(movieObj) {
   const li = document.createElement("li");
   li.id = movieObj.id;
+  li.title=movieObj.title
+  console.log(movieObj)
   renderMovieText(li, movieObj);
   movieList.appendChild(li);
 }
 
 function renderMovieText(li, movieObj) {
-  console.log(movieObj.title);
+  console.log(movieObj.body);
   li.innerHTML = `
-    <h3>${movieObj.title}</h3>`;
+    <h3>${movieObj.title}</h3>
+    <input type="radio" name="choice" value="yes" id="choice-yes"> 
+    <label for="choice-yes">Yes</label>
+    <input type="radio" name="choice" value="no" id="choice-no">
+    <label for="choice-no">No</label>
+    `;
 }
 
 function listMovies() {
@@ -64,3 +71,8 @@ function listMovies() {
 }
 
 listMovies();
+
+// <input type="radio" name="choice" value="yes" id="choice-yes"> 
+//     <label for="choice-yes">Yes</label>
+//     <input type="radio" name="choice" value="no" id="choice-no">
+//     <label for="choice-no">No</label>
