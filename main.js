@@ -27,7 +27,19 @@ function addMovie(movieTitle) {
         method: "POST",
         headers: {"Content-Type": "applcation/json"},
         body: JSON.stringify({
-            title:
+            title: movieTitle,
+            body: movieTitle,
         })
+        .then(response => response.json() )
+        .then(data => renderMovieItem(data)) 
     })
 }
+
+function renderMovieItem(movieObj){
+    const li = document.createElement("li")
+    li.id = movieObj.id
+renderMovieText(li,movieObj)
+moviesList.appendChild(li)
+}
+
+
