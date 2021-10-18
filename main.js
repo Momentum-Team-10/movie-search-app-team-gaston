@@ -1,3 +1,9 @@
+// Create a form to enter new movie titles
+// One input box - movie title
+// Default: movies marked as "not watched" - boolean
+// Radiobutton: two icons (fontawesome) to indicate watched/unwatched
+// Calendar widget to establish date watched - only visible 
+
 /* globals fetch, moment */
 
 const url = "http://localhost:3000/movies"
@@ -35,11 +41,27 @@ function addMovie(movieTitle) {
     })
 }
 
-function renderMovieItem(movieObj){
+function renderMovieItem(movieObj) {
     const li = document.createElement("li")
     li.id = movieObj.id
-renderMovieText(li,movieObj)
-moviesList.appendChild(li)
+    renderMovieText(li, movieObj)
+    moviesList.appendChild(li)
 }
 
+function renderMovieText(li, movieObj) {
+    console.log(movieObj.title)
+    li.innerHTML = `
+    <h3>${movieObj.title}</h3>`
+}
 
+function listMovies() {
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        for (item of data) {
+        renderMovieItem(item)
+    }
+    })
+}
+
+listMovies()
