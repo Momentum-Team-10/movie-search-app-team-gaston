@@ -56,10 +56,10 @@ function renderMovieText(li, movieObj) {
   console.log(movieObj.body);
   li.innerHTML = `
     <div><h3>${movieObj.title}</h3>
-    <div><input type="radio" name="choice-${movieObj.title}" value="watched"> 
-    <label for="choice-watched">Watched</label></div>
+    <div><input type="radio" name="choice-${movieObj.title}" value="watched" > 
+    <label for="choice-watched" class="checkable" >Watched</label></div>
     <div><input type="radio" name="choice-${movieObj.title}" value="unwatched">
-    <label for="choice-unwatched">Unwatched</label></div>
+    <label for="choice-unwatched" class="checkable">Unwatched</label></div>
     </div>
     `;
 }
