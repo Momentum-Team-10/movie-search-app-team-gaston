@@ -56,13 +56,29 @@ function renderMovieText(li, movieObj) {
   console.log(movieObj.body);
   li.innerHTML = `
     <div><h3>${movieObj.title}</h3>
-    <div><input type="radio" name="choice-${movieObj.title}" value="watched" > 
+    <div><input type="radio" name="choice-${movieObj.title}" value="true" > 
     <label for="choice-watched" class="checkable" >Watched</label></div>
-    <div><input type="radio" name="choice-${movieObj.title}" value="unwatched">
+    <div><input type="radio" name="choice-${movieObj.title}" value="false">
     <label for="choice-unwatched" class="checkable">Unwatched</label></div>
     </div>
     `;
 }
+
+// // (unfinished)Event listener - when watched is selected, update the database (and eventually allow them to enter a date watched)
+// function watchedMovie() {
+//
+// }
+
+// // (unfinished) function to update data in the database once watched = true
+// function updateWatch(movieEl) {
+//   fetch(url + '/' + `${movieEl.parentElement.id}`, {
+//     method: 'PUT',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify({
+//       title: 
+//     })
+//   }
+//   )}
 
 function listMovies() {
   fetch(url)
@@ -75,8 +91,3 @@ function listMovies() {
 }
 
 listMovies();
-
-// <input type="radio" name="choice" value="yes" id="choice-yes"> 
-//     <label for="choice-yes">Yes</label>
-//     <input type="radio" name="choice" value="no" id="choice-no">
-//     <label for="choice-no">No</label>
