@@ -24,46 +24,6 @@ form.addEventListener("submit", (e) => {
   form.reset();
 });
 
-/*
-    Unfinished
-*/
-
-function addMovie(movieTitle) {
-  fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      title: movieTitle,
-      body: movieTitle,
-      watched: false,
-      created_at: moment()
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => renderMovieItem(data));
-}
-
-function renderMovieItem(movieObj) {
-  const li = document.createElement("li");
-  li.id = movieObj.id;
-  li.title=movieObj.title
-  console.log(movieObj)
-  renderMovieText(li, movieObj);
-  movieList.appendChild(li);
-}
-
-function renderMovieText(li, movieObj) {
-  console.log(movieObj.body);
-  li.innerHTML = `
-    <div><h3>${movieObj.title}</h3>
-    <div><input type="radio" name="choice-${movieObj.title}" value="true" > 
-    <label for="choice-watched" class="checkable" >Watched</label></div>
-    <div><input type="radio" name="choice-${movieObj.title}" value="false">
-    <label for="choice-unwatched" class="checkable">Unwatched</label></div>
-    </div>
-    `;
-}
-
 // // (unfinished)Event listener - when watched is selected, update the database (and eventually allow them to enter a date watched)
 // function watchedMovie() {
 //
@@ -89,5 +49,45 @@ function listMovies() {
       }
     });
 }
+
+function renderMovieItem(movieObj) {
+  const li = document.createElement("li");
+  li.id = movieObj.id;
+  li.title=movieObj.title
+  console.log(movieObj)
+  renderMovieText(li, movieObj);
+  movieList.appendChild(li);
+}
+
+function renderMovieText(li, movieObj) {
+  console.log(movieObj.body);
+  li.innerHTML = `
+    <div><h3>${movieObj.title}</h3>
+    <div><input type="radio" name="choice-${movieObj.title}" value="true" > 
+    <label for="choice-watched" class="checkable" >Watched</label></div>
+    <div><input type="radio" name="choice-${movieObj.title}" value="false">
+    <label for="choice-unwatched" class="checkable">Unwatched</label></div>
+    </div>
+    `;
+    if(movieObj.watched === true) {
+      document.getElementById(`${movieObj.title}-watched`).classList.add("checked")
+    }
+}
+
+function addMovie(movieTitle) {
+  fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      title: movieTitle,
+      body: movieTitle,
+      watched: false,
+      created_at: moment()
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => renderMovieItem(data));
+}
+
 
 listMovies();
