@@ -35,6 +35,8 @@ function addMovie(movieTitle) {
     body: JSON.stringify({
       title: movieTitle,
       body: movieTitle,
+      watched: false,
+      created_at: moment()
     }),
   })
     .then((response) => response.json())
@@ -56,7 +58,7 @@ function renderMovieText(li, movieObj) {
     <div><h3>${movieObj.title}</h3>
     <div><input type="radio" name="choice-${movieObj.title}" value="watched"> 
     <label for="choice-watched">Watched</label></div>
-    <div><input type="radio" name="choice-${movieObj.title} value="unwatched">
+    <div><input type="radio" name="choice-${movieObj.title}" value="unwatched">
     <label for="choice-unwatched">Unwatched</label></div>
     </div>
     `;
