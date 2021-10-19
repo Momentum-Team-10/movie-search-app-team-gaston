@@ -3,6 +3,7 @@
 // Default: movies marked as "not watched" - boolean
 // Radiobutton: two icons (fontawesome) to indicate watched/unwatched
 // Calendar widget to establish date watched - only visible
+// Add button to delete list items
 
 /* globals fetch, moment */
 
@@ -52,11 +53,12 @@ function renderMovieItem(movieObj) {
 function renderMovieText(li, movieObj) {
   console.log(movieObj.body);
   li.innerHTML = `
-    <h3>${movieObj.title}</h3>
-    <input type="radio" name="choice" value="yes" id="choice-yes"> 
-    <label for="choice-yes">Yes</label>
-    <input type="radio" name="choice" value="no" id="choice-no">
-    <label for="choice-no">No</label>
+    <div><h3>${movieObj.title}</h3>
+    <div><input type="radio" name="choice-${movieObj.title}" value="watched"> 
+    <label for="choice-watched">Watched</label></div>
+    <div><input type="radio" name="choice-${movieObj.title} value="unwatched">
+    <label for="choice-unwatched">Unwatched</label></div>
+    </div>
     `;
 }
 
