@@ -23,10 +23,10 @@ form.addEventListener("submit", (e) => {
   form.reset();
 });
 
-//listener detects changes to movieList added 3:18pm
+//listener detects changes to movieList
 movieList.addEventListener("change", (e) => {
-  console.log(e.target.parentElement)
-  updateWatched(e.target.parentElement)
+  console.log(e.target.value)
+  updateWatched(e.target.parentElement.id, e.target.value)
 })
 
 function listMovies() {
@@ -50,9 +50,9 @@ function renderMovieItem(movieObj) {
 function renderMovieText(li, movieObj) {
   li.innerHTML = `
     <h3>${movieObj.title}</h3>
-    <input type="radio" id="${movieObj.title}-watched" name="choice-${movieObj.title}" value="true" > 
+    <input ${movieObj.watched? "checked": null} type="radio" id="${movieObj.title}-watched" name="choice-${movieObj.title}" value="true" > 
     <label for="choice-watched" class="checkable" >Watched</label>
-    <input type="radio" id="${movieObj.title}-unwatched" name="choice-${movieObj.title}" value="false">
+    <input ${!movieObj.watched? "checked": null} type="radio" id="${movieObj.title}-unwatched" name="choice-${movieObj.title}" value="false">
     <label for="choice-unwatched" class="checkable">Unwatched</label>
   
     `;
@@ -79,12 +79,12 @@ function addMovie(movieTitle) {
 listMovies();
 
 //(unfinished) function to update data in the database once watched = true
-function updateWatched(li) {
-  fetch(url + '/' + li.id, {
+function updateWatched(id, bool) {
+  fetch(url + '/' + id, {
     method: 'PATCH',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      watched: true,
+      watched: bool,
   }),
   })
     .then((res) => res.json())
