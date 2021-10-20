@@ -29,6 +29,8 @@ movieList.addEventListener("change", (e) => {
   updateWatched(e.target.parentElement.id, e.target.value)
 })
 
+
+
 function listMovies() {
   fetch(url)
     .then((response) => response.json())
@@ -91,4 +93,26 @@ function updateWatched(id, bool) {
     .then((data) => {
       console.log(data)
     })
+}
+
+function addDateWatched() {
+  let modal = createElement('div')
+  modal.id = "date-watched-modal"
+  // add class info to style modal here
+
+  let modalContent = createElement('div')
+   // add class info to style content here
+
+  let modalButton = createElement('button')
+  modalButton.id = "add"
+  // add class info to style button here
+
+  let closeModal = createElement('button')  
+  closeModal.id = "close"
+  // add class info to style button here
+
+  modalContent.appendChild(modalButton)
+  modalContent.appendChild(closeModal)
+  modal.appendChild(modalContent)
+
 }
