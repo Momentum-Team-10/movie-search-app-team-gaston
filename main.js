@@ -19,15 +19,14 @@ form.addEventListener("submit", (e) => {
 
   const movieTitle = document.getElementById("movie-title").value;
 
-  console.log(movieTitle);
   addMovie(movieTitle);
   form.reset();
 });
 
 //listener detects changes to movieList added 3:18pm
 movieList.addEventListener("change", (e) => {
-  e.target.parentElement
   console.log(e.target.parentElement)
+  //updateWatched()
 })
 
 function listMovies() {
@@ -44,13 +43,11 @@ function renderMovieItem(movieObj) {
   const li = document.createElement("li");
   li.id = movieObj.id;
   li.title=movieObj.title
-  console.log(movieObj)
   renderMovieText(li, movieObj);
   movieList.appendChild(li);
 }
 
 function renderMovieText(li, movieObj) {
-  console.log(movieObj.body);
   li.innerHTML = `
     <h3>${movieObj.title}</h3>
     <input type="radio" name="choice-${movieObj.title}" value="true" > 
@@ -70,7 +67,6 @@ function addMovie(movieTitle) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       title: movieTitle,
-      body: movieTitle,
       watched: false,
       created_at: moment()
     }),
