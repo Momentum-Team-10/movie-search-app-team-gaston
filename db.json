@@ -1,15 +1,22 @@
 {
   "movies": [
     {
+<<<<<<< HEAD
       "watched": "true",
       "id": 1
+=======
+      "id": 1,
+      "title": "Citizen Kane",
+      "watched": false,
+      "created_at": "Monday, November 30th 2020, 8:19 am"
+>>>>>>> 964abc8443e0227042c05553fb3f1603c7277ffb
     },
     {
       "title": "Revenge of the sith",
-      "body": "Revenge of the sith",
-      "watched": true,
+      "watched": false,
       "created_at": "2021-10-19T19:02:11.453Z",
       "id": 2
+<<<<<<< HEAD
     },
     {
       "title": "New Movie",
@@ -34,6 +41,8 @@
       "watched": false,
       "created_at": "2021-10-20T18:19:58.941Z",
       "id": 6
+=======
+>>>>>>> 964abc8443e0227042c05553fb3f1603c7277ffb
     }
   ]
 }
