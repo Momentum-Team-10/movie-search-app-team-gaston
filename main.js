@@ -26,7 +26,7 @@ form.addEventListener("submit", (e) => {
 //listener detects changes to movieList added 3:18pm
 movieList.addEventListener("change", (e) => {
   console.log(e.target.parentElement)
-  //updateWatched()
+  updateWatched(e.target.parentElement)
 })
 
 function listMovies() {
@@ -50,15 +50,15 @@ function renderMovieItem(movieObj) {
 function renderMovieText(li, movieObj) {
   li.innerHTML = `
     <h3>${movieObj.title}</h3>
-    <input type="radio" name="choice-${movieObj.title}" value="true" > 
+    <input type="radio" id="${movieObj.title}-watched" name="choice-${movieObj.title}" value="true" > 
     <label for="choice-watched" class="checkable" >Watched</label>
-    <input type="radio" name="choice-${movieObj.title}" value="false">
+    <input type="radio" id="${movieObj.title}-unwatched" name="choice-${movieObj.title}" value="false">
     <label for="choice-unwatched" class="checkable">Unwatched</label>
   
     `;
-    if(movieObj.watched === true) {
-      document.getElementById(`${movieObj.title}-watched`).classList.add("checked")
-    }
+    // if(movieObj.watched === true) {
+    //   document.getElementById(`${movieObj.title}-watched`).classList.add("checked")
+    // }
 }
 
 function addMovie(movieTitle) {
@@ -78,18 +78,17 @@ function addMovie(movieTitle) {
 
 listMovies();
 
-// // (unfinished)Event listener - when watched is selected, update the database (and eventually allow them to enter a date watched)
-// function watchedMovie() {
-//
-// }
-
-// // (unfinished) function to update data in the database once watched = true
-// function updateWatch(movieEl) {
-//   fetch(url + '/' + `${movieEl.parentElement.id}`, {
-//     method: 'PUT',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify({
-//       title: 
-//     })
-//   }
-//   )}
+//(unfinished) function to update data in the database once watched = true
+function updateWatched(li) {
+  fetch(url + '/' + li.id, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      watched: true,
+  }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+    })
+}
